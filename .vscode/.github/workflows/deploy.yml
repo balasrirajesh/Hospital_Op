@@ -2,7 +2,8 @@ name: Deploy Hospital Website
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
 
 permissions:
   contents: read
@@ -34,7 +35,8 @@ jobs:
       - name: Upload website
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./dist"
+          path: ./dist
 
       - name: Deploy website
+        id: deployment
         uses: actions/deploy-pages@v4
