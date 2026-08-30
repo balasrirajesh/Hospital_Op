@@ -47,7 +47,7 @@ const DashboardLayout = ({ children }) => {
 export function App() {
   return (
     <AuthProvider>
-      <Router>
+      <Router basename={import.meta.env.BASE_URL}>
         <div className="app-container">
           <Navbar />
           <main className="main-content">

@@ -1,4 +1,4 @@
-name: Deploy Hospital Website
+﻿name: Deploy Hospital Website
 
 on:
   push:
@@ -9,8 +9,15 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
 
     steps:
@@ -23,18 +30,24 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
+        working-directory: frontend
         run: npm install
 
       - name: Build
+        working-directory: frontend
         run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Copy index.html to 404.html for SPA routing
+        run: cp frontend/dist/index.html frontend/dist/404.html
+
       - name: Upload website
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./dist"
+          path: "./frontend/dist"
 
       - name: Deploy website
+        id: deployment
         uses: actions/deploy-pages@v4

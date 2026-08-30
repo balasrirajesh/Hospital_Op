@@ -1,0 +1,17 @@
+﻿# Node / Frontend
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Java / Backend
+target/
+backend/target/
+*.class
+
+# IDE & Editor
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
