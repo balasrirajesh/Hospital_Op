@@ -1,4 +1,4 @@
-﻿# Node / Frontend
+# Node / Frontend
 node_modules/
 dist/
 dist-ssr/
@@ -7,7 +7,9 @@ dist-ssr/
 # Java / Backend
 target/
 backend/target/
+backend/data/
 *.class
+*.db
 
 # IDE & Editor
 .vscode/
